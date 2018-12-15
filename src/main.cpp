@@ -16,9 +16,10 @@ enum {
 
 //Instruction set
 enum {
+	LBL, //label_id: create a label, label_id should be unique
+
 	//Load and store value
 	MOV, //source, destination
-	LBL, //label_id: create a label, label_id should be unique
 
 	//Alrithmetic operators
 	ADD, //a, b, c: set c=a+b
