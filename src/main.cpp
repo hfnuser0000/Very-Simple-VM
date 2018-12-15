@@ -72,8 +72,8 @@ private:
 
 	//Registers
 	int eax,
-		ebx,
-		cmx; //for comparision
+	    ebx,
+	    cmx; //for comparision
 
 	int nextCode() {
 		if (pc >= code.size()) {
