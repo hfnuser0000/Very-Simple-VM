@@ -3,16 +3,14 @@
 #include <map>
 using namespace std;
 
-//#define debug
-
 //Resource type
 enum {
-	EAX = 0x00, //General purpose register EAX
+	EAX = 0x00, 	//General purpose register EAX
 	EBX,		//General purpose register EBX
 	CMX,		//Store comparision result
-	MEM = 0x10, //Memory
-	STA = 0x20, //Top of stack
-	PTR = 0x30, //Pointer
+	MEM = 0x10, 	//Memory
+	STA = 0x20, 	//Top of stack
+	PTR = 0x30, 	//Pointer
 	CON = 0x40	//Constant
 };
 
