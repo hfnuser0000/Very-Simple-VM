@@ -142,51 +142,27 @@ private:
 		type = nextCode();
 		switch (type) {
 		case EAX:
-#ifdef debug
-			cout << "EAX ";
-#endif
 			return eax;
 			break;
 		case EBX:
-#ifdef debug
-			cout << "EBX ";
-#endif
 			return ebx;
 			break;
 		case CMX:
-#ifdef debug
-			cout << "CMX ";
-#endif
 			return cmx;
 			break;
 		case MEM:
-#ifdef debug
-			cout << "MEM ";
-#endif
 			return mem(nextCode());
 			break;
 		case STA:
-#ifdef debug
-			cout << "STA ";
-#endif
 			return pop();
 			break;
 		case PTR:
-#ifdef debug
-			cout << "PTR ";
-#endif
 			return mem(read());
 			break;
 		case CON:
-#ifdef debug
-			cout << "CON ";
-#endif
 			return nextCode();
 			break;
 		default:
-#ifdef debug
-			cout << "UNKNOWN ";
-#endif
 			break;
 		}
 	}
@@ -196,45 +172,24 @@ private:
 		type = nextCode();
 		switch (type) {
 		case EAX:
-#ifdef debug
-			cout << "EAX ";
-#endif
 			eax = v;
 			break;
 		case EBX:
-#ifdef debug
-			cout << "EBX ";
-#endif
 			ebx = v;
 			break;
 		case CMX:
-#ifdef debug
-			cout << "CMX ";
-#endif
 			cmx = v;
 			break;
 		case MEM:
-#ifdef debug
-			cout << "MEM ";
-#endif
 			set_mem(nextCode(), v);
 			break;
 		case STA:
-#ifdef debug
-			cout << "STA ";
-#endif
 			push(v);
 			break;
 		case PTR:
-#ifdef debug
-			cout << "PTR ";
-#endif
 			set_mem(read(), v);
 			break;
 		default:
-#ifdef debug
-			cout << "UNKNOWN ";
-#endif
 			break;
 		}
 	}
@@ -284,136 +239,76 @@ public:
 			int a, b;
 			switch (opcode) {
 			case MOV:
-#ifdef debug
-				cout << "MOV ";
-#endif
 				write(read());
 				break;
 			case LBL:
-#ifdef debug
-				cout << "LBL ";
-#endif
 				nextCode();
 				break;
 			case ADD:
-#ifdef debug
-				cout << "ADD ";
-#endif
 				write(read() + read());
 				break;
 			case SUB:
-#ifdef debug
-				cout << "SUB ";
-#endif
 				write(read() - read());
 				break;
 			case MUL:
-#ifdef debug
-				cout << "MUL ";
-#endif
 				write(read() * read());
 				break;
 			case DIV:
-#ifdef debug
-				cout << "DIV ";
-#endif
 				write(read() / read());
 				break;
 			case CMP:
-#ifdef debug
-				cout << "CMP ";
-#endif
 				cmx = read() - read();
 				break;
 			case BIA:
-#ifdef debug
-				cout << "BIA ";
-#endif
 				write(read() & read());
 				break;
 			case BIO:
-#ifdef debug
-				cout << "BIO ";
-#endif
 				write(read() | read());
 				break;
 			case BIX:
-#ifdef debug
-				cout << "BIX ";
-#endif
 				write(read() ^ read());
 				break;
 			case NOT:
-#ifdef debug
-				cout << "NOT ";
-#endif
 				write(!read());
 				break;
 			case JMP:
-#ifdef debug
-				cout << "JMP ";
-#endif
 				pc = lbl(nextCode());
 				break;
 			case JEQ:
-#ifdef debug
-				cout << "JEQ ";
-#endif
 				a = nextCode();
 				if (cmx == 0)
 					pc = lbl(a);
 				break;
 			case JNE:
-#ifdef debug
-				cout << "JNE ";
-#endif
 				a = nextCode();
 				if (cmx != 0)
 					pc = lbl(a);
 				break;
 			case JLT:
-#ifdef debug
-				cout << "JLT ";
-#endif
 				a = nextCode();
 				if (cmx < 0)
 					pc = lbl(a);
 				break;
 			case JGT:
-#ifdef debug
-				cout << "JGT ";
-#endif
 				a = nextCode();
 				if (cmx > 0)
 					pc = lbl(a);
 				break;
 			case JLE:
-#ifdef debug
-				cout << "JLE ";
-#endif
 				a = nextCode();
 				if (cmx <= 0)
 					pc = lbl(a);
 				break;
 			case JGE:
-#ifdef debug
-				cout << "JGE ";
-#endif
 				a = nextCode();
 				if (cmx >= 0)
 					pc = lbl(a);
 				break;
 			case CAL:
-#ifdef debug
-				cout << "CAL ";
-#endif
 				proc_push(pc + 1);
 				pc = lbl(nextCode());
 				break;
 			case CEQ:
-#ifdef debug
-				cout << "CEQ ";
-#endif
 				a = nextCode();
 				if (cmx == 0) {
 					proc_push(pc + 1);
@@ -421,9 +316,6 @@ public:
 				}
 				break;
 			case CNE:
-#ifdef debug
-				cout << "CNE ";
-#endif
 				a = nextCode();
 				if (cmx != 0) {
 					proc_push(pc + 1);
@@ -431,9 +323,6 @@ public:
 				}
 				break;
 			case CLT:
-#ifdef debug
-				cout << "CLT ";
-#endif
 				a = nextCode();
 				if (cmx < 0) {
 					proc_push(pc + 1);
@@ -441,9 +330,6 @@ public:
 				}
 				break;
 			case CGT:
-#ifdef debug
-				cout << "CGT ";
-#endif
 				a = nextCode();
 				if (cmx > 0) {
 					proc_push(pc + 1);
@@ -451,9 +337,6 @@ public:
 				}
 				break;
 			case CLE:
-#ifdef debug
-				cout << "CLE ";
-#endif
 				a = nextCode();
 				if (cmx <= 0) {
 					proc_push(pc + 1);
@@ -461,9 +344,6 @@ public:
 				}
 				break;
 			case CGE:
-#ifdef debug
-				cout << "CGE ";
-#endif
 				a = nextCode();
 				if (cmx >= 0) {
 					proc_push(pc + 1);
@@ -471,39 +351,21 @@ public:
 				}
 				break;
 			case NAV:
-#ifdef debug
-				cout << "NAV ";
-#endif
 				break;
 			case RET:
-#ifdef debug
-				cout << "RET ";
-#endif
 				pc = proc_restore();
 				break;
 			case EXI:
-#ifdef debug
-				cout << "EXI ";
-#endif
 				stop_flag = true;
 				break;
 			case PRINT:
-#ifdef debug
-				cout << "PRINT ";
-#endif
 				cout << read() << endl;
 				break;
 			case INPUT:
-#ifdef debug
-				cout << "INPUT ";
-#endif
 				cin >> a;
 				write(a);
 				break;
 			default:
-#ifdef debug
-				cout << "UNKNOWN ";
-#endif
 				break;
 			}
 		}
